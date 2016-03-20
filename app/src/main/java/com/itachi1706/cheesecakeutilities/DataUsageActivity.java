@@ -24,8 +24,6 @@ import android.widget.TextView;
 
 import com.itachi1706.cheesecakeutilities.Util.CommonMethods;
 
-import java.util.concurrent.TimeUnit;
-
 @TargetApi(Build.VERSION_CODES.M)
 public class DataUsageActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -120,33 +118,36 @@ public class DataUsageActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        long end = System.currentTimeMillis();
-        long start = System.currentTimeMillis() - (TimeUnit.DAYS.toMillis(1));  // 1 Month
+        //long end = System.currentTimeMillis();
+        //long start = System.currentTimeMillis() - (TimeUnit.DAYS.toMillis(1));  // 1 Month
+
+        long end = Long.MAX_VALUE;
+        long start = Long.MIN_VALUE;
         switch (v.getId()) {
             case R.id.btn_query_summary:
                 try {
-                    parseNetworkStats(networkStatsManager.querySummary(ConnectivityManager.TYPE_MOBILE, "", start, end));
+                    parseNetworkStats(networkStatsManager.querySummary(ConnectivityManager.TYPE_WIFI, "", start, end));
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
                 break;
             case R.id.btn_query_summary_device:
                 try {
-                    parseNetworkBucket(networkStatsManager.querySummaryForDevice(ConnectivityManager.TYPE_MOBILE, "", start, end));
+                    parseNetworkBucket(networkStatsManager.querySummaryForDevice(ConnectivityManager.TYPE_WIFI, "", start, end));
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
                 break;
             case R.id.btn_query_summary_user:
                 try {
-                    parseNetworkBucket(networkStatsManager.querySummaryForUser(ConnectivityManager.TYPE_MOBILE, "", start, end));
+                    parseNetworkBucket(networkStatsManager.querySummaryForUser(ConnectivityManager.TYPE_WIFI, "", start, end));
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
                 break;
             case R.id.btn_query_details:
                 try {
-                    parseNetworkStats(networkStatsManager.queryDetails(ConnectivityManager.TYPE_MOBILE, "", start, end));
+                    parseNetworkStats(networkStatsManager.queryDetails(ConnectivityManager.TYPE_WIFI, "", start, end));
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -179,11 +180,6 @@ public class DataUsageActivity extends AppCompatActivity implements View.OnClick
         Log.d("Stat", "Has Stats. Processing");
         String out = "";
         NetworkStats.Bucket bucket = new NetworkStats.Bucket();
-        Log.d("Stat", "Init");
-        /*if (!stats.hasNextBucket()) {
-            stats.close();
-            presentOutput("NULL");
-        }*/
         Log.d("Stat", "Start Loop");
         do {
             Log.d("Bucket", "Get Bucket");
