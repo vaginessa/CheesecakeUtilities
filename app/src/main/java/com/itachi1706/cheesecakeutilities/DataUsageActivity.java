@@ -27,6 +27,10 @@ import com.itachi1706.cheesecakeutilities.Util.CommonMethods;
 @TargetApi(Build.VERSION_CODES.M)
 public class DataUsageActivity extends AppCompatActivity implements View.OnClickListener {
 
+    // TODO: Apparently we can grant signatureOrSystem permissions through the Android Debug Bridge even on Prod
+    // TODO: adb -d shell pm grant <packagename> <permission>
+    // More info: https://github.com/theblixguy/ForceDoze
+
     Button generalDetails, deviceDetails, userDetails;
     Button historyGeneral, historyUid;
     EditText uidValue;
