@@ -42,6 +42,22 @@
     <!-- Strings related to Settings -->
     <string name="title_activity_general_settings">Settings</string>
 
+    <!-- Fingerprint Feature -->
+    <string name="password">Password</string>
+    <string name="password_description">Enter your password to continue</string>
+    <string name="use_fingerprint_in_future">Use fingerprint in the future</string>
+    <string name="new_fingerprint_enrolled_description">A new fingerprint was added to this device, so your password is required.</string>
+    <string name="fingerprint_description">Confirm fingerprint to continue</string>
+    <string name="fingerprint_hint">Touch sensor</string>
+    <string name="use_fingerprint_to_authenticate_title">Use fingerprint to authenticate</string>
+    <string name="use_fingerprint_to_authenticate_key" >use_fingerprint_to_authenticate_key</string>
+    <string name="fingerprint_not_recognized">Fingerprint not recognized. Try again</string>
+    <string name="fingerprint_success">Fingerprint recognized</string>
+    <string name="sign_in">Sign in</string>
+    <string name="cancel">Cancel</string>
+    <string name="use_password">Use password</string>
+    <string name="ok">Ok</string>
+
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
     <string name="link_updates">https://github.com/itachi1706/CheesecakeUtilities/releases/latest</string>

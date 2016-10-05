@@ -61,6 +61,8 @@ public class GeneralSettingsActivity extends AppCompatActivity {
                 }
             });
 
+            addPreferencesFromResource(R.xml.pref_fingerprint);
+
             new SettingsInitializer(getActivity(), R.mipmap.ic_launcher,
                     CommonVariables.BASE_SERVER_URL, getResources().getString(R.string.link_legacy),
                     getResources().getString(R.string.link_updates)).explodeSettings(this);
