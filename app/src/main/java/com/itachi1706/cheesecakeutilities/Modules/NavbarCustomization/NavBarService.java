@@ -263,6 +263,41 @@ public class NavBarService extends AccessibilityService {
         this.unregisterReceiver(receiver);
     }
 
+    /**
+     * Playing around with color cycling
+     * @param r Red
+     * @param g Green
+     * @param b Blue
+     * @return new RGB value to cycle to
+     */
+    private int[] cycleColor(int r, int g, int b) {
+        int[] rgbColour = new int[3];
+
+        // Start off with red.
+        /*rgbColour[0] = 255;
+        rgbColour[1] = 0;
+        rgbColour[2] = 0;*/
+
+        rgbColour[0] = r;
+        rgbColour[1] = g;
+        rgbColour[2] = b;
+
+        // Choose the colours to increment and decrement.
+        for (int decColour = 0; decColour < 3; decColour += 1) {
+            int incColour = decColour == 2 ? 0 : decColour + 1;
+
+            // cross-fade the two colours.
+            for(int i = 0; i < 255; i += 1) {
+                rgbColour[decColour] -= 1;
+                rgbColour[incColour] += 1;
+
+                /*setColourRgb(rgbColour[0], rgbColour[1], rgbColour[2]);
+                delay(5);*/
+            }
+        }
+        return rgbColour;
+    }
+
     ResponseReceiver receiver;
 
     private class ResponseReceiver extends BroadcastReceiver {
