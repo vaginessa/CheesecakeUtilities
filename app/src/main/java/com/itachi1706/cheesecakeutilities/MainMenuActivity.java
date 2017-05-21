@@ -2,6 +2,7 @@ package com.itachi1706.cheesecakeutilities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -39,6 +40,12 @@ public class MainMenuActivity extends AppCompatActivity {
         Fabric.with(this, crashlyticsKit);
         FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.getInstance(this);
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, null);
+
+        // Activate Strict Mode only in debuggable apks
+        if (BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().penaltyDialog().build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
+        }
 
         setContentView(R.layout.activity_main_menu_tabbed);
 
