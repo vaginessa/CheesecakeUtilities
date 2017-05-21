@@ -14,6 +14,8 @@ import android.view.ViewParent;
 import android.view.WindowManager;
 
 import com.itachi1706.cheesecakeutilities.Features.FingerprintAuth.PasswordHelper;
+import com.itachi1706.cheesecakeutilities.Util.CommonMethods;
+import com.itachi1706.cheesecakeutilities.Util.CommonVariables;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -66,7 +68,7 @@ public class AuthenticationFeatureTest {
     @BeforeClass
     public static void resetAuth() {
         Context context = getInstrumentation().getTargetContext();
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences sp = CommonMethods.getSharedPreference(context);
         PasswordHelper.deletePassword(sp);
     }
 

@@ -19,6 +19,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.itachi1706.cheesecakeutilities.BaseActivity;
 import com.itachi1706.cheesecakeutilities.R;
 import com.itachi1706.cheesecakeutilities.RecyclerAdapters.StringRecyclerAdapter;
+import com.itachi1706.cheesecakeutilities.Util.CommonMethods;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,7 +49,7 @@ public class ORDActivity extends BaseActivity {
         progressBar = (ArcProgress)  findViewById(R.id.ord_progressbar);
 
         // Get Holiday List from Firebase
-        FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfig firebaseRemoteConfig = CommonMethods.getFirebaseInstance();
         firebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
         firebaseHolidayList = firebaseRemoteConfig.getString("ord_holidays");
     }
@@ -64,7 +65,7 @@ public class ORDActivity extends BaseActivity {
             recyclerView.setItemAnimator(new DefaultItemAnimator());
 
             // Set up layout
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences sp = CommonMethods.getSharedPreference(this);
             long ord = sp.getLong(ORDSettingsActivity.SP_ORD, 0);
             long ptp = sp.getLong(ORDSettingsActivity.SP_PTP, 0);
             long pop = sp.getLong(ORDSettingsActivity.SP_POP, 0);

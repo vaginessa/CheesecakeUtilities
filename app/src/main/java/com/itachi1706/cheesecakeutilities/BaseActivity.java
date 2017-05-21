@@ -32,7 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         boolean checkGlobal = this.getIntent().hasExtra("globalcheck") && this.getIntent().getExtras().getBoolean("globalcheck");
         boolean authagain = !this.getIntent().hasExtra("authagain") || this.getIntent().getExtras().getBoolean("authagain");
         if (!authagain) return;
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sp = CommonMethods.getSharedPreference(this);
         if (!(menuitem == null || menuitem.isEmpty() || menuitem.equals(""))) {
             if (!CommonMethods.isGlobalLocked(sp) && CommonMethods.isUtilityLocked(sp, menuitem)) {
                 Log.i("Authentication", "Requesting Utility Authentication for " + menuitem);

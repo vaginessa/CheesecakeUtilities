@@ -51,7 +51,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        sp = CommonMethods.getSharedPreference(this);
 
         pager = (ViewPager) findViewById(R.id.main_viewpager);
         tabLayout = (TabLayout) findViewById(R.id.main_tablayout);

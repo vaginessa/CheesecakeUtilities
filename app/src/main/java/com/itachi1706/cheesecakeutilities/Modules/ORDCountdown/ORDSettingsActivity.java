@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.itachi1706.cheesecakeutilities.R;
+import com.itachi1706.cheesecakeutilities.Util.CommonMethods;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -57,7 +58,7 @@ public class ORDSettingsActivity extends AppCompatActivity {
         this.enlist = new enlistListener();
         this.ptp = new ptpListener();
 
-        this.sp = PreferenceManager.getDefaultSharedPreferences(this);
+        this.sp = CommonMethods.getSharedPreference(this);
 
         enlistEt = (EditText) findViewById(R.id.etEnlist);
         ordEt = (EditText) findViewById(R.id.etORD);

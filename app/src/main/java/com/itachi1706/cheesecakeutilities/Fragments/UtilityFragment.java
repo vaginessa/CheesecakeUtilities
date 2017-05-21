@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.itachi1706.cheesecakeutilities.R;
 import com.itachi1706.cheesecakeutilities.RecyclerAdapters.MainMenuAdapter;
+import com.itachi1706.cheesecakeutilities.Util.CommonMethods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,7 +41,7 @@ public class UtilityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
-        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        sp = CommonMethods.getSharedPreference(getActivity());
 
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.main_menu_recycler_view);
         if (recyclerView != null) {
@@ -56,7 +57,7 @@ public class UtilityFragment extends Fragment {
             recyclerView.setAdapter(adapter);
         }
 
-        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        mFirebaseRemoteConfig = CommonMethods.getFirebaseInstance();
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
         mFirebaseRemoteConfig.fetch(FIREBASE_REFRESH_TIME).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

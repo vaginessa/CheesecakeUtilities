@@ -13,6 +13,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.itachi1706.cheesecakeutilities.Features.FingerprintAuth.AuthenticationActivity;
 import com.itachi1706.cheesecakeutilities.R;
 import com.itachi1706.cheesecakeutilities.RecyclerAdapters.ManageUtilAdapter;
+import com.itachi1706.cheesecakeutilities.Util.CommonMethods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,12 +36,12 @@ public class ManageUtilityActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sp = CommonMethods.getSharedPreference(this);
         String hiddenUtil = sp.getString("utilHidden", "");
         String lockedUtil = sp.getString("utilLocked", "");
 
         // Set up layout
-        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        mFirebaseRemoteConfig = CommonMethods.getFirebaseInstance();
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
         List<String> menuitemsList = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.mainmenu)));
         List<String> firebaseHidden = new ArrayList<>(Arrays.asList(mFirebaseRemoteConfig.getString("serverHide").split("\\|\\|\\|")));

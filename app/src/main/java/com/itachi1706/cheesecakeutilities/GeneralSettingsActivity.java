@@ -23,6 +23,7 @@ import com.itachi1706.cheesecakeutilities.Features.FingerprintAuth.Authenticatio
 import com.itachi1706.cheesecakeutilities.Features.FingerprintAuth.PasswordHelper;
 import com.itachi1706.cheesecakeutilities.Features.UtilityManagement.ManageUtilityActivity;
 import com.itachi1706.cheesecakeutilities.Modules.ConnectivityQuietHours.QHConstants;
+import com.itachi1706.cheesecakeutilities.Util.CommonMethods;
 import com.itachi1706.cheesecakeutilities.Util.CommonVariables;
 
 import java.security.InvalidKeyException;
@@ -59,7 +60,7 @@ public class GeneralSettingsActivity extends AppCompatActivity {
             final Preference pw = findPreference("password");
             final Preference fp_pw = findPreference("password_fp");
 
-            sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            sp = CommonMethods.getSharedPreference(getActivity());
             updatePasswordViews(pw, fp_pw);
 
             findPreference("testpw").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

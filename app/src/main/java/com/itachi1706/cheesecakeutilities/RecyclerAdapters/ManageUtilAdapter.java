@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.itachi1706.cheesecakeutilities.R;
+import com.itachi1706.cheesecakeutilities.Util.CommonMethods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,7 +79,7 @@ public class ManageUtilAdapter extends RecyclerView.Adapter<ManageUtilAdapter.Ma
         {
             super(v);
             mContext = v.getContext();
-            sp = PreferenceManager.getDefaultSharedPreferences(v.getContext());
+            sp = CommonMethods.getSharedPreference(v.getContext());
             title = (TextView) v.findViewById(R.id.text1);
             visibleToggle = (ImageButton) v.findViewById(R.id.checkbox);
             visibleToggle.setOnClickListener(this);

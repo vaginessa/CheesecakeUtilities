@@ -2,7 +2,13 @@ package com.itachi1706.cheesecakeutilities.Util;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.StrictMode;
+import android.preference.PreferenceManager;
+
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.itachi1706.cheesecakeutilities.BuildConfig;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -39,6 +45,31 @@ public class CommonMethods {
         if (lockedUtil.isEmpty() || lockedUtil.equals("")) return false;
         List<String> locked = new ArrayList<>(Arrays.asList(lockedUtil.split("\\|\\|\\|")));
         return locked.contains(utilityName);
+    }
+
+    public static SharedPreferences getSharedPreference(Context context) {
+        if (CommonVariables.sp == null)
+            if (BuildConfig.DEBUG) {
+                StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
+                StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder(old).permitDiskReads().build());
+                CommonVariables.sp = PreferenceManager.getDefaultSharedPreferences(context);
+                StrictMode.setThreadPolicy(old);
+            } else
+                CommonVariables.sp = PreferenceManager.getDefaultSharedPreferences(context);
+        return CommonVariables.sp;
+    }
+
+    public static FirebaseRemoteConfig getFirebaseInstance() {
+        if (CommonVariables.firebaseRemoteConfig == null)
+            if (BuildConfig.DEBUG) {
+                StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
+                StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder(old).permitDiskReads().build());
+                CommonVariables.firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+                StrictMode.setThreadPolicy(old);
+            } else
+            CommonVariables.firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+
+        return CommonVariables.firebaseRemoteConfig;
     }
 
 }

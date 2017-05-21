@@ -15,6 +15,7 @@ import android.util.Log;
 import com.itachi1706.cheesecakeutilities.Modules.ConnectivityQuietHours.ConnectivityQuietHoursActivity;
 import com.itachi1706.cheesecakeutilities.Modules.ConnectivityQuietHours.QHConstants;
 import com.itachi1706.cheesecakeutilities.R;
+import com.itachi1706.cheesecakeutilities.Util.CommonMethods;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -28,7 +29,7 @@ public class BluetoothToggleReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.i(TAG, "Waking up");
         boolean state = intent.getExtras().getBoolean("status");
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences sp = CommonMethods.getSharedPreference(context);
         if (!sp.getBoolean(QHConstants.QH_BT_STATE, false)) return; // Not enabled
         if (!context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)) return; // No Hardware
 

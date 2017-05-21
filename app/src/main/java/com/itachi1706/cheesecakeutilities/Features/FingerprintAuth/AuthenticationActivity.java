@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.afollestad.digitus.FingerprintDialog;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.itachi1706.cheesecakeutilities.R;
+import com.itachi1706.cheesecakeutilities.Util.CommonMethods;
 
 import java.security.InvalidKeyException;
 
@@ -25,7 +26,7 @@ public class AuthenticationActivity extends AppCompatActivity implements Fingerp
         setContentView(R.layout.activity_authentication);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        sp = CommonMethods.getSharedPreference(this);
         if (!PasswordHelper.hasPassword(sp)) {
             // No password, treat as authenticated
             Log.i("Authentication", "No Password Found. Presuming Authenticated");

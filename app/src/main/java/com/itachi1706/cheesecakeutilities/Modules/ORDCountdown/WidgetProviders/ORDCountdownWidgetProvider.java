@@ -14,6 +14,7 @@ import com.itachi1706.cheesecakeutilities.MainMenuActivity;
 import com.itachi1706.cheesecakeutilities.Modules.ORDCountdown.ORDActivity;
 import com.itachi1706.cheesecakeutilities.Modules.ORDCountdown.ORDSettingsActivity;
 import com.itachi1706.cheesecakeutilities.R;
+import com.itachi1706.cheesecakeutilities.Util.CommonMethods;
 
 import java.util.concurrent.TimeUnit;
 
@@ -29,7 +30,7 @@ public class ORDCountdownWidgetProvider extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ordcountdown_widget_provider);
 
         // Calculate ORD
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences sp = CommonMethods.getSharedPreference(context);
         long ord = sp.getLong(ORDSettingsActivity.SP_ORD, 0);
         long currentTime = System.currentTimeMillis();
 

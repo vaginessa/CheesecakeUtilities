@@ -101,7 +101,7 @@ public class ConnectivityQuietHoursActivity extends BaseActivity {
         historyLayout = (LinearLayout) findViewById(R.id.layout_history);
         historyRecyclerView = (RecyclerView) findViewById(R.id.rv_qh_history);
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences = CommonMethods.getSharedPreference(this);
 
         // Init On Click for Time
         wifiStart.setOnClickListener(new View.OnClickListener() {
@@ -339,7 +339,7 @@ public class ConnectivityQuietHoursActivity extends BaseActivity {
 
         // Update to Always from Always (VERBOSE) if Firebase disables it
         // Firebase key: quiethour_debug_mode
-        FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfig firebaseRemoteConfig = CommonMethods.getFirebaseInstance();
         firebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
         if (!firebaseRemoteConfig.getBoolean("quiethour_debug_mode")) {
             if (btNotification.getSelectedItemPosition() == QH_NOTIFY_DEBUG) {
